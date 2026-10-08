@@ -1,3 +1,1 @@
-aiohttp>=3.8.4
-gql>=4.0
-oathtool>=2.3.1
+monarchmoneycommunity>=1.6,<2

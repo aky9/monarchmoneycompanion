@@ -1,6 +1,6 @@
-name: monarchmoney build
+name: ci
 
-on: 
+on:
   push:
   pull_request:
   workflow_dispatch:
@@ -9,21 +9,17 @@ jobs:
   black:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: lint
         uses: psf/black@stable
-  unit_tests:
+  smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Python 3
-        uses: actions/setup-python@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Run tests with unittest
-        run: |
-          python -m unittest tests/test_monarchmoney.py
+        run: pip install -r requirements.txt
+      - name: Scripts import against the installed library
+        run: python connect.py --help
