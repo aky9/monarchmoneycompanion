@@ -1,16 +1,14 @@
-# Ensures proactive management of this library's dependencies
+# Opens a PR when a new monarchmoneycommunity (or other dependency) release is out
 
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/" # Location of package manifests
+    directory: "/"
     schedule:
       interval: "weekly"
-    reviewers:
-      - "hammem"
     commit-message:
       prefix: "[pip] "
       include: "scope"
-    lables:
+    labels:
       - "pip"
       - "dependencies"
